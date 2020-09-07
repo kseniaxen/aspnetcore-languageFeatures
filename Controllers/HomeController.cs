@@ -37,31 +37,9 @@ namespace LanguageFeatures.Controllers
             return View("Index", new List<string>());
         }
 
-        // public Task<bool> TryGetRemoteData(out string data) {
-        //     HttpClient client = new HttpClient();
-        //     var httpTask = client.GetAsync(@"http://apress.com");
-        //     return httpTask. ContinueWith<bool>((Task<HttpResponseMessage> response) => {
-        //         try
-        //         {
-        //             data = response.Result.Content.Headers.ContentLength.ToString();
-        //             return true;
-        //         }
-        //         catch (System.Exception)
-        //         {
-        //             return false;
-        //         }
-        //     });
-        // }
-
-        // public Task<long?> TryGetRemoteData() {
-        public Task<string> TryGetRemoteData() {
-                HttpClient client = new HttpClient();
-                var httpTask = client.GetAsync(@"http://apress.com");
-                return httpTask.ContinueWith(async (Task<HttpResponseMessage> response) => {
-                    // return response.Result.Content.Headers.ContentLength;
-                    string result = await await response.Result.Content.ReadAsStringAsync();
-                    return result;
-                });
+        public async Task<string> TryGetRemoteData() {
+            HttpClient client = new HttpClient();
+            return await client.GetStringAsync(@"http://apress.com");
         }
     }
 }
