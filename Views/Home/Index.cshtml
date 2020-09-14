@@ -1,4 +1,4 @@
-@model IEnumerable<string>
+@model IEnumerable<LanguageFeatures.Models.Covid19>
 @{ Layout = null; }
 <!DOCTYPE html>
 <html>
@@ -7,10 +7,28 @@
     <title>Language Features</title>
 </head>
 <body>
-    <ul>
-        @foreach (string s in Model) {
-            <li>@s</li>
-        }
-    </ul>
+    <h2>COVID-19</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Infected</th>
+                <th>Dead</th>
+                <th>Recovered</th>
+                <th>Dead percent</th>
+                <th>Recovered percent</th>
+            </tr>
+        </thead>
+        <tbody>
+             @foreach (LanguageFeatures.Models.Covid19 r in Model) {
+                        <tr>
+                            <td>@r.infected</td>
+                            <td>@r.dead</td>
+                            <td>@r.recovered</td>
+                            <td>@r.deadPt</td>
+                            <td>@r.recPt</td>
+                        </tr>
+                    }
+        </tbody>
+    </table>
 </body>
 </html>
